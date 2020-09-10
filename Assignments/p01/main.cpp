@@ -268,12 +268,56 @@ int main() {
     Stack S1;           // calls default constructor
     Stack S2(25);       // calls overloaded constructor
 
+    
+    S1.Push(8);
+    S1.Push(8);
+    S1.Push(8);
+    S1.Push(8);
+    S1.Push(8);
+    S1.Push(8);
+    S1.Push(8);
+    S1.Push(8);
+    S1.Push(8);
+    S1.Push(8);
+    S1.Push(8);
+    S1.Push(8);
+    S1.Push(8);
     S1.Push(7);
     S1.Push(4);
     S1.Push(8);
     S1.Push(2);
     S1.Print();
 
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
+    cout << "Popped a: " << S1.Pop() << endl;
     cout << "Popped a: " << S1.Pop() << endl;
     cout << "Popped a: " << S1.Pop() << endl;
     
