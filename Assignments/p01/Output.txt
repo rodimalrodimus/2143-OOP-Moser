@@ -1,0 +1,7 @@
+Name: Michael Moser
+Program: P01
+Date: 15 Sep 2020
+
+Start size: 10
+Max size:80
+Ending size: 80
