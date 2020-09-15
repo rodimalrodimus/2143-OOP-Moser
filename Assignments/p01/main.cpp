@@ -89,6 +89,15 @@ public:
         top = -1;               // initialize top of stack
         size = 0;               // set stack to empty
     }
+        /**
+     * ~Stack:
+     *    Destructor.
+     * Params:
+     *    none
+     * 
+     * Returns:
+     *     Void
+     */
     ~Stack(){
       ofstream out;
       out.open("Output.txt");
@@ -98,7 +107,7 @@ public:
 
     }
      /**
-     * Pop:
+     * Load:
      *    Loads input file
      * Params:
      *    string (name of input file)
