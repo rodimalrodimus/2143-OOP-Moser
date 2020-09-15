@@ -2,7 +2,7 @@
 //                   
 // Author:           Michael Moser
 // Email:            963852741zzz@gmail.com
-// Label:            L02
+// Label:            P01
 // Title:            Array Based Stack 
 // Course:           2143
 // Semester:         Fall 2020
@@ -11,13 +11,15 @@
 //       Example implementation of an array based stack that holds integers.
 //
 // Usage:
-//       Nothing special right now.
+//       Reads input file and populates stack
 //
 // Files:            
-//       None
+//       input
 /////////////////////////////////////////////////////////////////////////////////
 #include <iostream>
+#include <fstream>
 #include <string>
+//#include "input.txt"
 using namespace std;
 
 /**
@@ -49,10 +51,12 @@ using namespace std;
  */
 class Stack {
 private:
-    int *S;       //array pointer
-    int capacity; //max stack size
-    int top;      //current top (index)
-    int size;     //current num items
+    int *S;              //array pointer
+    int capacity;        //max stack size
+    int top;            //current top (index)
+    int size;           //current num items
+    int max_cap;        //largest capacity
+    int start_capacity;  //starting capacity
 public:
     /**
      * Stack:
@@ -64,7 +68,7 @@ public:
      *     Void
      */
     Stack() {
-        capacity = 10;          // set array size
+        start_capacity = capacity = 10;          // set array size
         S = new int[capacity];  // allocate new memory
         top = -1;               // initialize top of stack
         size = 0;               // set stack to empty
@@ -80,12 +84,52 @@ public:
      *     Void
      */
     Stack(int cap) {
-        capacity = cap;         // set array size      
+        start_capacity = capacity = cap;         // set array size      
         S = new int[capacity];  // allocate new memory
         top = -1;               // initialize top of stack
         size = 0;               // set stack to empty
     }
+    ~Stack(){
+      ofstream out;
+      out.open("Output.txt");
+      out <<"Name: Michael Moser\nProgram: P01\nDate: 15 Sep 2020" << endl 
+        << endl << "Start size: " << start_capacity << "\nMax size:"
+        << max_cap <<"\nEnding size: " << capacity << endl;
 
+    }
+     /**
+     * Pop:
+     *    Loads input file
+     * Params:
+     *    string (name of input file)
+     * 
+     * Returns:
+     *     void
+     */
+
+    void Load(std::string file) {
+      ifstream fin;
+    string command;
+    int value;
+
+    fin.open(file);
+    while(!fin.eof()){
+        fin>>command;           // read push or pop  
+        //cout<<command<<" ";
+
+
+        if(command == "push"){  // if command is a push we need
+            fin>>value;         // to read a value in as well
+            Push(value);    
+       }
+        else{
+          Pop();
+        }
+      
+
+    }
+    return;
+    }
     /**
      * Push:
      *    Push item onto stack.
@@ -98,15 +142,16 @@ public:
     void Push(int data) {
         if (Full())
         {
+          cout << "+: " << capacity <<" -> ";
           capacity *= 2;
+          max_cap = capacity;
           int *Z = new int[capacity];  // allocate new memory
         for (int i = top; i >= 0; i--) {
           Z[i] = S[i];
           }
         delete [] S;
         S = Z;
-        
-        
+        cout << capacity << endl;
         }
         top++;              // move top of stack up
         size++;             // increment size
@@ -128,6 +173,18 @@ public:
         int data = S[top];  // pull item from stack
         top--;              // shrink the stack
         size--;             // update our size
+        if ((size*2) == capacity)
+        {
+          cout <<"-: " << capacity <<" -> ";
+          capacity /= 2;
+          int *Z = new int[capacity];  // allocate new memory
+        for (int i = top; i >= 0; i--) {
+          Z[i] = S[i];
+          }
+        delete [] S;
+        S = Z;
+        cout << capacity << endl;
+        }
         return data;        // send item back
       }
       else
@@ -191,7 +248,7 @@ public:
      * Returns:
      *     ostream 
      */
-    friend ostream &operator<<(ostream &os, const Stack s) {
+    friend ostream &operator<<(std::ostream &os, const Stack s) {
         os << "Overloaded!!" << endl;
         for (int i = s.top; i >= 0; i--) {
             os << s.S[i] << endl;
@@ -265,76 +322,8 @@ Person::Person(string f, string l, int a) {
 }
 
 int main() {
+
+  cout << "Name: Michael Moser\nProgram: P01\nDate: 15 Sep 2020" << endl;
     Stack S1;           // calls default constructor
-    Stack S2(25);       // calls overloaded constructor
-
-    
-    S1.Push(8);
-    S1.Push(8);
-    S1.Push(8);
-    S1.Push(8);
-    S1.Push(8);
-    S1.Push(8);
-    S1.Push(8);
-    S1.Push(8);
-    S1.Push(8);
-    S1.Push(8);
-    S1.Push(8);
-    S1.Push(8);
-    S1.Push(8);
-    S1.Push(7);
-    S1.Push(4);
-    S1.Push(8);
-    S1.Push(2);
-    S1.Print();
-
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    cout << "Popped a: " << S1.Pop() << endl;
-    
-    S1.Push(9);
-
-    //S1.Print();           // old way to print!
-    cout << S1 << endl;     // cool way to print
-
-    Person P1;              // calls default constructor (no params)
-
-    P1.fname = "suzy";      // adds values to person P1
-    P1.lname = "queue";
-    P1.age = 14;
-
-    cout << P1 << endl;     // calls overloaded ostream method
-
-    Person P2("dudley", "doowright", 30);   // uses overloaded constructor
-
-    cout << P2 << endl;     // calls overloaded ostream method
+   S1.Load("input.txt");
 }
